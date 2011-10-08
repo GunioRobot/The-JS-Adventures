@@ -210,6 +210,6 @@ function draw()
     prism(ctx, x);
     ctx.restore();
 
-    // White beam into the center of the prism
-    caustics(ctx, width, height, x);
+    // Create white beam
+    beam(ctx, width, height);
 }

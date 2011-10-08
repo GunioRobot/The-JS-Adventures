@@ -31,6 +31,7 @@ function prism(ctx, x)
     lingrad.addColorStop(1, 'WhiteSmoke');
     ctx.fillStyle = lingrad;
     ctx.strokeStyle = lingrad;
+    ctx.lineWidth = 1;
 
     // Need 3 triangles to get the gradient right.
     ctx.save();
@@ -105,7 +106,7 @@ function caustics(ctx, width, height, x)
     // BOUNCY BOUNCY
     // PI/6
     // x1 = 0 still, need to calculate y1
-    y1 = y_mid + width/2 * Math.sin(Math.PI/7);
+    y1 = y_mid + width/2 * Math.sin(Math.PI/8);
 
     // BOUNCY BOUNCY
 
@@ -176,12 +177,21 @@ function caustics(ctx, width, height, x)
         ctx.fillStyle = colours[i];
         ctx.strokeStyle = colours[i];
         ctx.beginPath();
-        ctx.moveTo(tl[0], tl[1]);
+        ctx.moveTo(1+tl[0], tl[1]);
         ctx.lineTo(tr[0], tr[1]);
         ctx.lineTo(br[0], br[1]);
-        ctx.lineTo(bl[0], bl[1]);
+        ctx.lineTo(1+bl[0], bl[1]);
         ctx.closePath();
         ctx.fill();
+
+        ctx.lineWidth = 1;
+        ctx.beginPath();
+        ctx.moveTo(1+tl[0], tl[1]);
+        ctx.lineTo(tr[0], tr[1]);
+        ctx.lineTo(br[0], br[1]);
+        ctx.lineTo(1+bl[0], bl[1]);
+        ctx.closePath();
+        ctx.stroke();
     }
     ctx.restore();
 }

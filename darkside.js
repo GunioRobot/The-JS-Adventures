@@ -211,5 +211,5 @@ function draw()
     ctx.restore();
 
     // Create white beam
-    beam(ctx, width, height);
+    caustics(ctx, width, height);
 }

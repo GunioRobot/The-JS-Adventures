@@ -134,4 +134,4 @@ function draw()
 
     // Create white beam
     beam(ctx, width, height);
-            }
+}

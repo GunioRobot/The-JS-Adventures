@@ -26,13 +26,34 @@
 
             function beam(ctx, width, height)
             {
+                point_x = width/2 - width/13;
+                point_y = height/3 + height/40; 
+
                 ctx.save();
                 ctx.strokeStyle = 'white';
-                ctx.lineWidth = width/100;
+                ctx.lineWidth = Math.max(1, width/300);
+                ctx.lineCap = 'round';
                 ctx.beginPath();
                 ctx.moveTo(0, height/2);
-                ctx.lineTo(width/2, height/3);
+                ctx.lineTo(point_x, point_y);
                 ctx.stroke();
+                ctx.restore();
+
+                // Inner beam
+                var lingrad = ctx.createLinearGradient(0, 0, width/10, 0);
+                lingrad.addColorStop(1, 'black');
+                lingrad.addColorStop(0, 'WhiteSmoke');
+
+                ctx.save();
+                ctx.beginPath();
+                ctx.fillStyle = lingrad;
+                ctx.translate(point_x, point_y);
+                ctx.rotate(-0.14);
+                ctx.moveTo(0, 0);
+                ctx.lineTo(x/3.14, 0);
+                ctx.lineTo(x/2.5, x/5);
+                ctx.closePath();
+                ctx.fill();
                 ctx.restore();
             }
 
@@ -103,8 +124,6 @@
                 ctx.fillStyle = "rgb(0, 0, 0)";
                 ctx.fillRect(0, 0, width, height);
 
-                // Create white beam
-                beam(ctx, width, height);
 
                 // Create coloured beams
                 colour_beam(ctx, width, height);
@@ -118,21 +137,8 @@
                 prism(ctx, x);
                 ctx.restore();
 
-                //Create inner beam
-                ctx.save();
-                ctx.strokeStyle = 'white';
-                beam_y = height/2 - x/2.5;
-                ctx.beginPath();
-                ctx.moveTo(0, beam_y + 8);
-                ctx.lineTo(width, beam_y - 12);
-                ctx.closePath();
-                ctx.stroke();
-                ctx.beginPath();
-                ctx.moveTo(0, beam_y - 37);
-                ctx.lineTo(width, beam_y + 53);
-                ctx.closePath();
-                ctx.stroke();
-                ctx.restore();
+                // Create white beam
+                beam(ctx, width, height);
             }
         </script>
         <!-- Square Canvas -->

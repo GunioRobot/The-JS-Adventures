@@ -2,149 +2,22 @@
 <html>
     <head>
         <title>I&apos;ll see you on the dark side of the Moon.</title>
-    </head>
-    <body onload="draw();">
-        <script type="text/javascript">
-            // Draw a triangle with current fill and stroke at a given width
-            // and height.
-            function triangle(ctx, width, height) 
-            {
-                ctx.beginPath();
-                ctx.moveTo(0, 0);
-                ctx.lineTo(-width/2, height);
-                ctx.lineTo(width/2, height);
-                ctx.closePath();
-                ctx.fill();
-
-                ctx.beginPath();
-                ctx.moveTo(0, 0);
-                ctx.lineTo(-width/2, height);
-                ctx.lineTo(width/2, height);
-                ctx.closePath();
-                ctx.stroke();
-            }
-
-            function beam(ctx, width, height)
-            {
-                point_x = width/2 - width/13;
-                point_y = height/3 + height/40; 
-
-                ctx.save();
-                ctx.strokeStyle = 'white';
-                ctx.lineWidth = Math.max(1, width/300);
-                ctx.lineCap = 'round';
-                ctx.beginPath();
-                ctx.moveTo(0, height/2);
-                ctx.lineTo(point_x, point_y);
-                ctx.stroke();
-                ctx.restore();
-
-                // Inner beam
-                var lingrad = ctx.createLinearGradient(0, 0, width/10, 0);
-                lingrad.addColorStop(1, 'black');
-                lingrad.addColorStop(0, 'WhiteSmoke');
-
-                ctx.save();
-                ctx.beginPath();
-                ctx.fillStyle = lingrad;
-                ctx.translate(point_x, point_y);
-                ctx.rotate(-0.14);
-                ctx.moveTo(0, 0);
-                ctx.lineTo(x/3.14, 0);
-                ctx.lineTo(x/2.5, x/5);
-                ctx.closePath();
-                ctx.fill();
-                ctx.restore();
-            }
-
-            function colour_beam(ctx, width, height)
-            {
-                ctx.save();
-                ctx.translate(width/2, height/3);
-                ctx.lineWidth = width/150;
-                function disp_beam()
-                {
-                    x = width/15;
-                    ctx.beginPath();
-                    ctx.moveTo(0, 0);
-                    ctx.lineTo(width/2 + width/30, x);
-                    ctx.lineTo(width/2 + width/30, x+width/40);
-                    ctx.lineTo(0, width/75);
-                    ctx.closePath();
-                    ctx.fill();
-                }
-                colors = ['red', 'orange', 'yellow', 'greenyellow',
-                          'lightskyblue', 'blueviolet'];
-                for (color in colors)
-                {
-                    ctx.rotate(0.025);
-                    ctx.translate(0, width/150);
-                    ctx.save();
-                    ctx.translate(width/15, 0);
-                    ctx.fillStyle = colors[color];
-                    disp_beam();
-                    ctx.restore();
-                }
-                ctx.restore();
-            }
-
-            function prism(ctx, x)
-            {
-                // O = Tan(Theta) * A
-                // m = Tan(PI/6) * 1/2x
-                m = (x/2) * (1/Math.sqrt(3));
-
-                // linear gradient
-                var lingrad = ctx.createLinearGradient(0, 0, 0, m);
-                lingrad.addColorStop(0.75, 'black');
-                lingrad.addColorStop(0.90, 'SlateGray');
-                lingrad.addColorStop(0.95, 'LightSlateGray');
-                lingrad.addColorStop(1, 'WhiteSmoke');
-                ctx.fillStyle = lingrad;
-                ctx.strokeStyle = lingrad;
-
-                ctx.save()
-                triangle(ctx, x, m);
-                ctx.rotate(Math.PI * (2/3));
-                triangle(ctx, x, m);
-                ctx.rotate(Math.PI * (2/3));
-                triangle(ctx, x, m);
-                ctx.restore();
-            }
-
-            function draw()
-            {
-                var canvas = document.getElementById("thecanvas");
-                var height = canvas.height;
-                var width = canvas.width;
-
-                var ctx = canvas.getContext("2d");
-
-                // Background
-                ctx.fillStyle = "rgb(0, 0, 0)";
-                ctx.fillRect(0, 0, width, height);
-
-
-                // Create coloured beams
-                colour_beam(ctx, width, height);
-
-                // Create prism
-                x = height/2.75;
-                prism_xpos = width/2;
-                prism_ypos = height/2 - x/6;
-                ctx.save();
-                ctx.translate(prism_xpos, prism_ypos);
-                prism(ctx, x);
-                ctx.restore();
-
-                // Create white beam
-                beam(ctx, width, height);
+        <script type="text/css">
+            html, body {
+                width:  100%;
+                height: 100%;
+                margin: 0px;
             }
         </script>
+        <script type="text/javascript" src="darkside.js"> </script>
+    </head>
+    <body onload="draw();" onresize="draw();" style="background-color: black;">
         <!-- Square Canvas -->
-        <canvas id="thecanvas" width="300" height="300">
-        Your browser is rubbish.
-        </canvas>
+        <div align="center">
+            <canvas id="thecanvas" width="500", height="500"> 
+            Your browser is rubbish.
+            </canvas>
+        </div>
     </body>
 </html>
 

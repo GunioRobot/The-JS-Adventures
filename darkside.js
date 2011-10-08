@@ -89,6 +89,7 @@ function caustics(ctx, width, height, x)
 
     // Calculate linewidth
     ctx.strokeStyle = 'white';
+    ctx.lineCap = 'round';
     ctx.lineWidth = Math.max(1, Math.max(width, height)/300);
 
     // Calculate point of intersection

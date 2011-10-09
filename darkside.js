@@ -202,10 +202,12 @@ function draw()
     // Setup canvas
     var canvas = document.getElementById("thecanvas");
     var ctx = canvas.getContext("2d");
-    ctx.canvas.width = window.innerWidth;
-    ctx.canvas.height = window.innerHeight;
-    var height = canvas.height;
-    var width = canvas.width;
+
+    var width = window.innerWidth;
+    var height = window.innerHeight;
+
+    canvas.width = width;
+    canvas.height = height;
 
     // Background
     ctx.fillStyle = "rgb(0, 0, 0)";

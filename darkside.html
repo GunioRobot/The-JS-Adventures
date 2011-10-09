@@ -2,22 +2,26 @@
 <html>
     <head>
         <title>I&apos;ll see you on the dark side of the Moon.</title>
-        <script type="text/css">
+        <script type="text/javascript" src="darkside.js"></script>
+        <style type="text/css">
             html, body {
-                width:  100%;
+                padding: 0;
+                margin: 0;
                 height: 100%;
-                margin: 0px;
+                width: 100%;
             }
-        </script>
-        <script type="text/javascript" src="darkside.js"> </script>
+
+            body {
+                overflow: hidden;
+                background: black;
+            }
+        </style>
     </head>
-    <body onload="draw();" onresize="draw();" style="background-color: black;">
+    <body onload="draw();" onresize="draw();">
         <!-- Square Canvas -->
-        <div align="center">
-            <canvas id="thecanvas">
+        <canvas id="thecanvas">
             Your browser is rubbish.
-            </canvas>
-        </div>
+        </canvas>
     </body>
 </html>
 

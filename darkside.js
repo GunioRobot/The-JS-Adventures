@@ -211,8 +211,7 @@ function draw()
     ctx.fillStyle = "rgb(0, 0, 0)";
     ctx.fillRect(0, 0, width, height);
 
-    var x = 3/4 * Math.min(width, height);
-    var x = Math.max(width/2.75, height/2.75);
+    var x = 3/5 * Math.min(width, height);
 
     // Create prism
     prism_xpos = width/2;
